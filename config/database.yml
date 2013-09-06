@@ -1,0 +1,17 @@
+common: &common
+  adapter: postgresql
+  host: localhost
+  timeout: 5000
+
+development:
+  <<: *common
+  database: diet_dev
+
+test:
+  <<: *common
+  database: diet_test
+
+production:
+  <<: *common
+  database: diet
+
