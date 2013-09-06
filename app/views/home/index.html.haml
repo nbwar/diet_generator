@@ -1,14 +1,14 @@
 =content_for :title, "Diet"
 
-= form_tag do
+= form_tag('/calories', method: 'post', id: 'calorie_calc') do
   = label_tag 'goal', 'Goal:'
   - ['muscle', 'maintenance', 'weightloss'].each do |goal|
     = radio_button_tag 'goal', goal, @goal == goal
     = label_tag "goal_#{goal}", goal.humanize
   %br/
-  = label_tag 'gender', 'Gender:'
+  = label_tag :gender, 'Gender:'
   - ['male', 'female'].each do |gender|
-    = radio_button_tag 'gender', gender, @gender == gender
+    = radio_button_tag :gender, gender, @gender == gender
     = label_tag "gender_#{gender}", gender.humanize
   %br/
   = label_tag 'height', 'Height:'
@@ -17,19 +17,28 @@
   = text_field_tag 'inches'
   in
   %br/
-  = label_tag 'weight', 'Weight:'
-  = text_field_tag 'weight'
+  = label_tag :weight, 'Weight:'
+  = text_field_tag :weight
   lbs
   %br/
-  = label_tag 'age', 'Age:'
-  = text_field_tag 'age'
+  = label_tag :age, 'Age:'
+  = text_field_tag :age
   %br/
-  = label_tag 'bf', 'Bodyfat:'
+  = label_tag :bf, 'Bodyfat:'
   - ['low', 'medium', 'high'].each do |bf|
-    = radio_button_tag 'bf', bf, @bf == bf
+    = radio_button_tag :bf, bf, @bf == bf
     = label_tag "bf_#{bf}", bf.humanize
   %br/
-  = label_tag 'activity', 'Activity:'
+  = label_tag :activity, 'Activity:'
+  = select_tag :activity, options_for_select([['None', 0], ['Light Activity', 1], ['Active', 2], ['Very Active',3]])
+  %br/
+  = submit_tag "Calculate"
+
+  :javascript
+    $(calorie_calc).on("submit", function(e) {
+      e.preventDefault();
+      console.log($(this).serialize().activity;
+    });
 
 
 
