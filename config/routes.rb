@@ -7,4 +7,6 @@ Diet::Application.routes.draw do
   get '/signup' => 'users#new', as: 'signup'
   get '/login' => 'sessions#new', as: 'login'
   delete '/logout' => 'sessions#destroy'
+
+  post '/calories' => 'home#calorie_calc'
 end

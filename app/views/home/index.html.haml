@@ -35,12 +35,9 @@
   = submit_tag "Calculate"
 
   :javascript
-    $(calorie_calc).on("submit", function(e) {
-      e.preventDefault();
-      console.log($(this).serialize().activity;
+    $(document).ready(function() {
+      calorieCalcController.init();
     });
-
-
 
   / %span
   /   Build Muscle
