@@ -10,19 +10,31 @@
     = label_tag "gender_#{gender}", gender.humanize
   %br/
   = label_tag 'height', 'Height:'
-  = text_field_tag 'feet'
+  = text_field_tag 'feet', nil, :onkeypress => 'validate(event)', :maxlength => 1
   ft
-  = text_field_tag 'inches'
+  = text_field_tag 'inches', nil, :onkeypress => 'validate(event)', :maxlength => 2
   in
   %br/
   = label_tag :weight, 'Weight:'
-  = text_field_tag :weight
+  = text_field_tag :weight, nil, :onkeypress => 'validate(event)', :maxlength => 3
   lbs
   %br/
   = label_tag :age, 'Age:'
-  = text_field_tag :age
+  = text_field_tag :age, nil, :onkeypress => 'validate(event)', :maxlength => 2
   %br/
   = label_tag :activity, 'Activity:'
   = select_tag :activity, options_for_select([['None', 1.2], ['Lightly Active', 1.375], ['Active', 1.55], ['Very Active', 1.725], ['Extremely Active', 1.9]])
   %br/
   = submit_tag "Calculate"
+
+:javascript
+  function validate(evt) {
+    var theEvent = evt || window.event;
+    var key = theEvent.keyCode || theEvent.which;
+    key = String.fromCharCode( key );
+    var regex = /[0-9]|\./;
+    if( !regex.test(key) ) {
+      theEvent.returnValue = false;
+      if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+  }

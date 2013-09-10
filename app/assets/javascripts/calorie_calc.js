@@ -27,13 +27,9 @@ var calorieCalcController = {
     $('#calorie_calc').on("submit", function(e) {
       e.preventDefault();
       var data = calorieCalcView.getFormData();
-      calorieCalc(data);
+      data.gender === "male" ? maleCalc(data) : femaleCalc(data)
     });
   }
-}
-
-function calorieCalc(data) {
-  data.gender === "male" ? maleCalc(data) : femaleCalc(data)
 }
 
 // Men: 66 + (6.23 x weight in pounds) + (12.7 x height in inches) - (6.8 x age in years)
