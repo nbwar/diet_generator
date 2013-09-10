@@ -1,46 +1,10 @@
 =content_for :title, "Diet"
 
-= form_tag('/calories', method: 'post', id: 'calorie_calc') do
-  = label_tag 'goal', 'Goal:'
-  - ['weightloss', 'maintenance', 'muscle'].each do |goal|
-    = radio_button_tag 'goal', goal, @goal == goal
-    = label_tag "goal_#{goal}", goal.humanize
-  %br/
-  = label_tag :gender, 'Gender:'
-  - ['male', 'female'].each do |gender|
-    = radio_button_tag :gender, gender, @gender == gender
-    = label_tag "gender_#{gender}", gender.humanize
-  %br/
-  = label_tag 'height', 'Height:'
-  = text_field_tag 'feet'
-  ft
-  = text_field_tag 'inches'
-  in
-  %br/
-  = label_tag :weight, 'Weight:'
-  = text_field_tag :weight
-  lbs
-  %br/
-  = label_tag :age, 'Age:'
-  = text_field_tag :age
-  %br/
-  = label_tag :activity, 'Activity:'
-  = select_tag :activity, options_for_select([['None', 1.2], ['Lightly Active', 1.375], ['Active', 1.55], ['Very Active', 1.725], ['Extremely Active', 1.9]])
-  %br/
-  = submit_tag "Calculate"
+= render "shared/calorie_calc_form"
 
-  :javascript
-    $(document).ready(function() {
-      calorieCalcController.init();
-    });
+:javascript
+  $(document).ready(function() {
+    calorieCalcController.init();
+  });
 
-  / %span
-  /   Build Muscle
-  / = radio_button_tag 'goal', 'muscle'
-  / %span
-  /   Maintenance
-  / = radio_button_tag 'goal', 'maintenance'
-  / %span
-  /   Loose Weight
-  / = radio_button_tag 'goal', 'weightloss'
 

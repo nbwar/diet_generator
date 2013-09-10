@@ -14,6 +14,7 @@ var calorieCalcView = {
     return values;
   },
   displayCalories: function(calories) {
+    // display to screen
     console.log(calories);
   }
 }
@@ -30,8 +31,6 @@ var calorieCalcController = {
     });
   }
 }
-
-
 
 function calorieCalc(data) {
   data.gender === "male" ? maleCalc(data) : femaleCalc(data)
