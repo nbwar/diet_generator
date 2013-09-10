@@ -2,7 +2,7 @@
 
 = form_tag('/calories', method: 'post', id: 'calorie_calc') do
   = label_tag 'goal', 'Goal:'
-  - ['muscle', 'maintenance', 'weightloss'].each do |goal|
+  - ['weightloss', 'maintenance', 'muscle'].each do |goal|
     = radio_button_tag 'goal', goal, @goal == goal
     = label_tag "goal_#{goal}", goal.humanize
   %br/
@@ -24,13 +24,8 @@
   = label_tag :age, 'Age:'
   = text_field_tag :age
   %br/
-  = label_tag :bf, 'Bodyfat:'
-  - ['low', 'medium', 'high'].each do |bf|
-    = radio_button_tag :bf, bf, @bf == bf
-    = label_tag "bf_#{bf}", bf.humanize
-  %br/
   = label_tag :activity, 'Activity:'
-  = select_tag :activity, options_for_select([['None', 0], ['Light Activity', 1], ['Active', 2], ['Very Active',3]])
+  = select_tag :activity, options_for_select([['None', 1.2], ['Lightly Active', 1.375], ['Active', 1.55], ['Very Active', 1.725], ['Extremely Active', 1.9]])
   %br/
   = submit_tag "Calculate"
 
