@@ -1,12 +1,14 @@
 = form_tag('/calories', method: 'post', id: 'calorie_calc') do
   = label_tag 'goal', 'Goal:'
+  - @goal = 'maintenance'
   - ['weightloss', 'maintenance', 'muscle'].each do |goal|
-    = radio_button_tag 'goal', goal, true
+    = radio_button_tag 'goal', goal, @goal == goal
     = label_tag "goal_#{goal}", goal.humanize
   %br/
   = label_tag :gender, 'Gender:'
+  - @gender = 'male'
   - ['male', 'female'].each do |gender|
-    = radio_button_tag :gender, gender, true
+    = radio_button_tag :gender, gender, @gender == gender
     = label_tag "gender_#{gender}", gender.humanize
   %br/
   = label_tag 'height', 'Height:'
